@@ -24,7 +24,15 @@
           fi
         '');
       in {
-        devShell = with pkgs; mkShell { };
+        devShell = with pkgs;
+          mkShell {
+            buildInputs = [
+              postgresql_15
+              self.packages.${system}.start-database
+              self.packages.${system}.stop-database
+              self.packages.${system}.psql-wrapped
+            ];
+          };
 
         packages = with pkgs; {
           start-database = (writeShellScriptBin "start-database" ''
