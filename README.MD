@@ -53,7 +53,7 @@ Something like the following flake.nix will work:
               db.psql-wrapped
             ];
             shellHook = ''
-              export PG_ROOT=$(git rev-parse --top-level)
+              export PG_ROOT=$(git rev-parse --show-toplevel)
             '';
           };
 
